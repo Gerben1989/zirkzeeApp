@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HomePage page.
+ * Generated class for the ExtraPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,24 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-extra',
+  templateUrl: 'extra.html',
 })
-export class HomePage {
+export class ExtraPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  navigateToAccountPage() {
-    this.navCtrl.push('AccountPage');
-  }
-
-  navigateToScanPage() {
-    this.navCtrl.push('ScanPage');
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad ExtraPage');
   }
 
 }

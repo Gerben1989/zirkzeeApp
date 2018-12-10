@@ -1,0 +1,21 @@
+page-create-account {
+    ion-input {
+        input {
+            text-align: right;
+            /* IF YOU ALSO WANT TO PUSH PLACHEHOLDER TO THE RIGHT USE THE FOLLOWING, IF NOT JUST DELETE THE ::-webkit-input-placeholder*/
+            ::-webkit-input-placeholder {
+                text-align: right;
+            }
+        }
+    }
+    //Divider line voor onder de datepicker hack, maakt de andere iets dikker
+    // .item-inner {
+        // border-bottom: 1px solid grey !important;
+
+        /* IF YOU ALSO WANT TO PUSH PLACHEHOLDER TO THE RIGHT USE THE FOLLOWING, IF NOT JUST DELETE THE ::-webkit-input-placeholder*/
+        // ::-webkit-input-placeholder {
+            // border-bottom: 1px solid grey !important;
+        // }
+    // }
+      
+}

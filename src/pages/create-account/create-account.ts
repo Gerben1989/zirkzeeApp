@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HomePage page.
+ * Generated class for the CreateAccountPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,24 +10,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-create-account',
+  templateUrl: 'create-account.html',
 })
-export class HomePage {
+export class CreateAccountPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  navigateToAccountPage() {
-    this.navCtrl.push('AccountPage');
+  navigateToRootHomePage(): void {
+    this.navCtrl.setRoot('HomePage');
   }
 
-  navigateToScanPage() {
-    this.navCtrl.push('ScanPage');
+  saveAccountSettings() {
+    console.log('saveAccountSettings()');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad CreateAccountPage');
   }
 
 }

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Account
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <h1>Name: <ion-badge margin color="danger" item-end>???</ion-badge></h1>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="transgender" item-start></ion-icon>
+        <p>Gender</p>
+        <ion-badge color="danger" item-end>???</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar" item-start></ion-icon>
+      <p>Birthday</p>
+      <ion-badge color="danger" item-end>???</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="trending-up" item-start></ion-icon>
+      <p>Height</p>
+      <ion-badge color="danger" item-end>???</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="man" item-start></ion-icon>
+      <p>Weight</p>
+      <ion-badge color="danger" item-end>???</ion-badge>
+    </ion-item>    
+    <ion-item>
+      <ion-icon name="body" item-start></ion-icon>
+      <p>Ligpositie</p>
+      <ion-badge color="danger" item-end>???</ion-badge>
+    </ion-item>
+    <ion-card-content>
+      <p>Je account is nog niet af! Vul de overige informatie in om verder te gaan.</p>
+    </ion-card-content>
+    <button ion-button block clear (click)="navigateToCreateAccountPage()">Create Account</button>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+    <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
+</ion-footer>
