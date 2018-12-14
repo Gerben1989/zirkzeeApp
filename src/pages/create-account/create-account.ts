@@ -1,4 +1,4 @@
-import { CreateAccountService } from '../../services/create-account/create-account.service';
+import { AccountService } from '../../services/account/account.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user/user.model';
@@ -23,12 +23,13 @@ export class CreateAccountPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private createUser: CreateAccountService) {
+    private accountRef: AccountService) {
   }
 
   addUser(user: User) {
-    this.createUser.addUser(user).then(ref => {
+    this.accountRef.addUser(user).then(ref => {
       console.log(ref.key);
+      this.navCtrl.setRoot('HomePage');
     })
   }
 

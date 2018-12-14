@@ -7,40 +7,91 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-item>
-      <h1>Name: <ion-badge margin color="danger" item-end>???</ion-badge></h1>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="transgender" item-start></ion-icon>
-        <p>Gender</p>
+  <!-- <div *ngIf="userRef$">
+      If user is true
+  </div>
+  
+  <div *ngIf="!userRef$">
+      If user is false
+  </div> -->
+  
+  <ng-container>
+    <ion-card>
+      <ion-item>
+        <h1>Name: <ion-badge margin color="danger" item-end>???</ion-badge></h1>
+      </ion-item>
+      <ion-item>
+          <ion-icon name="transgender" item-start></ion-icon>
+          <p>Gender</p>
+          <ion-badge color="danger" item-end>???</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" item-start></ion-icon>
+        <p>Birthday</p>
         <ion-badge color="danger" item-end>???</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="calendar" item-start></ion-icon>
-      <p>Birthday</p>
-      <ion-badge color="danger" item-end>???</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="trending-up" item-start></ion-icon>
-      <p>Height</p>
-      <ion-badge color="danger" item-end>???</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="man" item-start></ion-icon>
-      <p>Weight</p>
-      <ion-badge color="danger" item-end>???</ion-badge>
-    </ion-item>    
-    <ion-item>
-      <ion-icon name="body" item-start></ion-icon>
-      <p>Ligpositie</p>
-      <ion-badge color="danger" item-end>???</ion-badge>
-    </ion-item>
-    <ion-card-content>
-      <p>Je account is nog niet af! Vul de overige informatie in om verder te gaan.</p>
-    </ion-card-content>
-    <button ion-button block clear (click)="navigateToCreateAccountPage()">Create Account</button>
-  </ion-card>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="trending-up" item-start></ion-icon>
+        <p>Height</p>
+        <ion-badge color="danger" item-end>???</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="man" item-start></ion-icon>
+        <p>Weight</p>
+        <ion-badge color="danger" item-end>???</ion-badge>
+      </ion-item>    
+      <ion-item>
+        <ion-icon name="body" item-start></ion-icon>
+        <p>Ligpositie</p>
+        <ion-badge color="danger" item-end>???</ion-badge>
+      </ion-item>
+      <ion-card-content>
+        <p>Je account is nog niet af! Vul de overige informatie in om verder te gaan.</p>
+      </ion-card-content>
+      <button ion-button block clear (click)="navigateToCreateAccountPage()">Create Account</button>
+    </ion-card>
+  </ng-container>
+
+  <ng-container>
+    <ion-card *ngFor="let user of userRef$ | async" 
+      detail-push navPush="EditShoppingItemPage" 
+      [navParams]="{user: user}">
+      <ion-item>
+        <p>Username: </p>
+        <ion-badge margin color="secondary" item-end>{{user.firstname}}</ion-badge>
+      </ion-item>
+      <ion-item>
+          <ion-icon name="transgender" item-start></ion-icon>
+          <p>Gender</p>
+          <ion-badge color="secondary" item-end>{{user.lastname}}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" item-start></ion-icon>
+        <p>Birthday</p>
+        <ion-badge color="secondary" item-end>{{user.birthdate}}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="trending-up" item-start></ion-icon>
+        <p>Height</p>
+        <ion-badge color="secondary" item-end>{{user.height}}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="man" item-start></ion-icon>
+        <p>Weight</p>
+        <ion-badge color="secondary" item-end>{{user.weight}}</ion-badge>
+      </ion-item>    
+      <ion-item>
+        <ion-icon name="body" item-start></ion-icon>
+        <p>Ligpositie</p>
+        <ion-badge color="secondary" item-end>{{user.position}}</ion-badge>
+      </ion-item>
+      <ion-card-content>
+        <p>Je account is af! Als je informatie wilt aanpassen klik dan hier</p>
+      </ion-card-content>
+      <button ion-button block clear (click)="navigateToCreateAccountPage()">Edit Account</button>
+    </ion-card>
+  </ng-container>
+  
 </ion-content>
 
 <ion-footer>

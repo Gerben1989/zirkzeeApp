@@ -8,7 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
 import { MyApp } from './app.component';
-import { CreateAccountService } from './../services/create-account/create-account.service';
+import { AccountService } from './../services/account/account.service';
 import { SensorListService } from '../services/sensors/sensor-list.service';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { SensorListService } from '../services/sensors/sensor-list.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CreateAccountService,
+    AccountService,
     SensorListService,
   ]
 })
