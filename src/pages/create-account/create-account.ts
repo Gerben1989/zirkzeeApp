@@ -1,12 +1,7 @@
+import { CreateAccountService } from '../../services/create-account/create-account.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CreateAccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { User } from '../../models/user/user.model';
 
 @IonicPage()
 @Component({
@@ -15,7 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreateAccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: User = {
+    firstname: '',
+    lastname: '',
+    height: undefined,
+    weight: undefined,
+    gender: '',
+    birthdate: new Date(),
+    position: ''
+  }
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private createUser: CreateAccountService) {
+  }
+
+  addUser(user: User) {
+    this.createUser.addUser(user).then(ref => {
+      console.log(ref.key);
+    })
   }
 
   navigateToRootHomePage(): void {

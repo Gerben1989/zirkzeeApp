@@ -1,28 +1,40 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ScanPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Sensor } from '../../models/sensor/sensor.model';
+import { SensorListService } from '../../services/sensors/sensor-list.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
   selector: 'page-scan',
   templateUrl: 'scan.html',
 })
-export class ScanPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class ScanPage {
+  
+  sensorList$: Observable<Sensor[]>;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private sensorRef: SensorListService) {
+
+    this.sensorList$ = this.sensorRef
+    .getSensorList() //DB LIST
+    .snapshotChanges() //Key and Value pairs
+    .pipe(map(changes => {
+        return changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        }))
+    }));
   }
 
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
   }
   
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     console.log('ionViewDidLoad ScanPage');
   }
 

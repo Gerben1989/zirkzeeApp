@@ -1,0 +1,22 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Sensor #{{sensor?.number}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label stacked>Number</ion-label>
+        <ion-input [(ngModel)]="sensor.number" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Value</ion-label>
+        <ion-input [(ngModel)]="sensor.value" type="text"></ion-input>
+      </ion-item>
+      <button ion-button block clear (click)="editSensor(sensor)">Submit</button>
+      <button ion-button block clear color="danger" (click)="removeSensor(sensor)">Remove</button>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>create-sensor</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label stacked>Number</ion-label>
+    <ion-input [(ngModel)]="sensor.number" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Value</ion-label>
+    <ion-input [(ngModel)]="sensor.value" type="text"></ion-input>
+  </ion-item>
+  <button ion-button block clear (click)="addSensor(sensor)">Submit</button>
+
+</ion-content>

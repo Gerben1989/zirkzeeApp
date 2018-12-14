@@ -1,16 +1,35 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Scan</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      <img src="../../assets/imgs/bodyscan.png">
-    </ion-card-content>
-  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 *ngFor="let sensor of sensorList$ | async">
+        <ng-container *ngIf="sensor.value >= 0 && sensor.value <= 145"><div style="background-color:#00FF00">1</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 146 && sensor.value <= 292"><br/><div style="background-color:#55FF00">2</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 293 && sensor.value <= 438"><br/><br/><div style="background-color:#AAFF00">3</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 439 && sensor.value <= 584"><br/><br/><br/><div style="background-color:#FFFF00">4</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 585 && sensor.value <= 730"><br/><br/><br/><br/><div style="background-color:#FFAA00">5</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 731 && sensor.value <= 871"><br/><br/><br/><br/><br/><div style="background-color:#FF5500">6</div></ng-container>
+        <ng-container *ngIf="sensor.value >= 872 && sensor.value <= 1023"><br/><br/><br/><br/><br/><br/><div style="background-color:#FF0000">7</div></ng-container>
+      </ion-col>
+      <ion-col col-2>
+          <div style="background-color:#00FF00">1</div>
+          <div style="background-color:#55FF00">2</div>
+          <div style="background-color:#AAFF00">3</div>
+          <div style="background-color:#FFFF00">4</div>
+          <div style="background-color:#FFAA00">5</div>
+          <div style="background-color:#FF5500">6</div>
+          <div style="background-color:#FF0000">7</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
 
 <ion-footer>
