@@ -31,13 +31,5 @@ export class CreateSensorPage {
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
   }
-
-  // saveAccountSettings() {
-  //   console.log('saveAccountSettings()');
-  // }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateAccountPage');
-  }
-
+  
 }

@@ -21,4 +21,12 @@ export class AccountService {
     addUser(user: User) {
         return this.AccountRef.push(user);
     }
+
+    editUser(user: User) {
+        return this.AccountRef.update(user.key, user);
+    }
+
+    removeUser(user: User) {
+        return this.AccountRef.remove(user.key);
+    }
 }

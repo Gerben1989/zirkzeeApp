@@ -41,8 +41,8 @@ export class AccountPage {
     this.navCtrl.push('CreateAccountPage');
   }
 
-  ionViewWillLoad() {
-    console.log('ionViewDidLoad AccountPage');
+  navigateToEditAccountPage() {
+    this.navCtrl.push('EditAccountPage');
   }
   
 }

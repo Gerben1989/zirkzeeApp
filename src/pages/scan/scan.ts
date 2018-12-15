@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
   selector: 'page-scan',
   templateUrl: 'scan.html',
 })
-
 export class ScanPage {
   
   sensorList$: Observable<Sensor[]>;
@@ -32,10 +31,6 @@ export class ScanPage {
 
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
-  }
-  
-  ionViewWillLoad() {
-    console.log('ionViewDidLoad ScanPage');
   }
 
 }

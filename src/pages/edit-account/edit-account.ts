@@ -5,20 +5,12 @@ import { User } from '../../models/user/user.model';
 
 @IonicPage()
 @Component({
-  selector: 'page-create-account',
-  templateUrl: 'create-account.html',
+  selector: 'page-edit-account',
+  templateUrl: 'edit-account.html',
 })
-export class CreateAccountPage {
+export class EditAccountPage {
 
-  user: User = {
-    firstname: '',
-    lastname: '',
-    height: undefined,
-    weight: undefined,
-    gender: '',
-    birthdate: new Date(),
-    position: ''
-  }
+  user: User;
 
   constructor(
     public navCtrl: NavController, 
@@ -26,10 +18,20 @@ export class CreateAccountPage {
     private accountRef: AccountService) {
   }
 
-  addUser(user: User) {
-    this.accountRef.addUser(user).then(ref => {
+  ionViewWillLoad() {
+    this.user = this.navParams.get('user');  
+  }
+
+  editUser(user: User) {
+    this.accountRef.editUser(user).then(ref => {
       this.navCtrl.setRoot('AccountPage');
     })
+  }
+
+  removeUser(user:User) {
+    this.accountRef.removeUser(user).then(() => {
+      this.navCtrl.setRoot('AccountPage');
+    });
   }
 
   navigateToRootHomePage(): void {

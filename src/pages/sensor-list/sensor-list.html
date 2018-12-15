@@ -1,5 +1,4 @@
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>
       sensor-list
@@ -10,23 +9,18 @@
         </button>
       </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
-
-    <ion-list>
-        <ion-list-header>
-          Sensors
-        </ion-list-header>
-        <ion-item *ngFor="let sensor of sensorList$ | async"
-                  detail-push navPush="EditSensorPage" 
-                  [navParams]="{sensor: sensor}">
-          {{sensor.number}}
-          {{sensor.value}}
-        </ion-item>
-      </ion-list>
-
+  <ion-list>
+    <ion-list-header>
+      Sensors
+    </ion-list-header>
+    <ion-item *ngFor="let sensor of sensorList$ | async" detail-push navPush="EditSensorPage" [navParams]="{sensor: sensor}">
+      {{sensor.number}}
+      {{sensor.value}}
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

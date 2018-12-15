@@ -33,4 +33,8 @@ export class EditSensorPage {
     });
   }
 
+  navigateToRootHomePage(): void {
+    this.navCtrl.setRoot('HomePage');
+  }
+
 }

@@ -11,7 +11,6 @@ import { Sensor } from '../../models/sensor/sensor.model';
   selector: 'page-sensor-list',
   templateUrl: 'sensor-list.html',
 })
-
 export class SensorListPage {
 
   sensorList$: Observable<Sensor[]>;
@@ -33,4 +32,5 @@ export class SensorListPage {
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
   }
+  
 }
