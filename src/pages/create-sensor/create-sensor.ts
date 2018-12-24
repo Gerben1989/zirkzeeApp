@@ -11,18 +11,17 @@ import { Sensor } from '../../models/sensor/sensor.model';
 export class CreateSensorPage {
 
   sensor: Sensor = {
-    number: undefined,
-    value: undefined,
+    pressure: undefined,
   }
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private sensorList: SensorListService) {
+    private sensorListService: SensorListService) {
   }
 
   addSensor(sensor: Sensor) {
-    this.sensorList.addSensor(sensor).then(ref => {
+    this.sensorListService.addSensor(sensor).then(ref => {
       console.log(ref.key);
       this.navCtrl.setRoot('SensorListPage');
     })

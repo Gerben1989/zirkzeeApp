@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sensor } from '../../models/sensor/sensor.model';
 
-
 @IonicPage()
 @Component({
   selector: 'page-sensor-list',
@@ -20,13 +19,14 @@ export class SensorListPage {
     private sensorRef: SensorListService) {
 
     this.sensorList$ = this.sensorRef
-      .getSensorList() //DB LIST
+      .getSensorListTest() //DB LIST
       .snapshotChanges() //Key and Value pairs
       .pipe(map(changes => {
           return changes.map(c => ({
             key: c.payload.key, ...c.payload.val()
           }))
     }));
+
   }
 
   navigateToRootHomePage(): void {

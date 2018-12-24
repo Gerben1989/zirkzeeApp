@@ -13,20 +13,34 @@ import { map } from 'rxjs/operators';
 export class ScanPage {
   
   sensorList$: Observable<Sensor[]>;
+  sensorListTest$: Observable<Sensor[]>;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private sensorRef: SensorListService) {
 
-    this.sensorList$ = this.sensorRef
-    .getSensorList() //DB LIST
-    .snapshotChanges() //Key and Value pairs
-    .pipe(map(changes => {
+    //TESTDATA
+    this.sensorListTest$ = this.sensorRef
+      .getSensorListTest() //DB LIST
+      .snapshotChanges() //Key and Value pairs
+      .pipe(map(changes => {
         return changes.map(c => ({
           key: c.payload.key, ...c.payload.val()
         }))
+      }));
+    this.sensorListTest$.subscribe(res => console.log(res))
+
+    //REALTIME DATA
+    this.sensorList$ = this.sensorRef
+    .getSensorListLive() //DB LIST
+    .snapshotChanges() //Key and Value pairs
+    .pipe(map(changes => {
+      return changes.map(c => ({
+        key: c.payload.key, ...c.payload.val()
+      }))
     }));
+    this.sensorList$.subscribe(res => console.log(res))
   }
 
   navigateToRootHomePage(): void {

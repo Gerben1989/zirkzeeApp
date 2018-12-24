@@ -3,13 +3,15 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
 import { MyApp } from './app.component';
-import { AccountService } from './../services/account/account.service';
 import { SensorListService } from '../services/sensors/sensor-list.service';
+import { ProfileService } from './../services/profile/profile.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SensorListService } from '../services/sensors/sensor-list.service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,8 +32,8 @@ import { SensorListService } from '../services/sensors/sensor-list.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AccountService,
     SensorListService,
+    ProfileService
   ]
 })
 export class AppModule {}

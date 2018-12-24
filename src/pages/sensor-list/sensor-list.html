@@ -4,10 +4,10 @@
       sensor-list
     </ion-title>
     <ion-buttons end>
-        <button navPush="CreateSensorPage" ion-button>
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button navPush="CreateSensorPage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -17,8 +17,7 @@
       Sensors
     </ion-list-header>
     <ion-item *ngFor="let sensor of sensorList$ | async" detail-push navPush="EditSensorPage" [navParams]="{sensor: sensor}">
-      {{sensor.number}}
-      {{sensor.value}}
+      {{sensor.pressure}}
     </ion-item>
   </ion-list>
 </ion-content>

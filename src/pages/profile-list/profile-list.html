@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Profile List</ion-title>
+    <ion-buttons end>
+      <button navPush="CreateProfilePage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1 *ngIf="(profileListRef$ | async)?.length==0">
+    Je hebt nog geen profiel(en) aangemaakt. Klik rechtsboven op de + om te beginnen!
+  </h1>
+  <ng-container *ngFor="let profile of profileListRef$ | async">
+    <ion-card detail-push navPush="ProfilePage" [navParams]="{profile: profile}">
+      <ion-item>
+        <p>{{profile.firstname}} {{profile.lastname}}</p>
+        <ion-badge color="danger">Geen gelinkte scans gevonden</ion-badge>
+        <ion-icon item-end name="play"></ion-icon>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
+</ion-footer>

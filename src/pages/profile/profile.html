@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Profile {{profile.key}}</ion-title>
+    <ion-buttons end>
+      <button navPush="EditProfilePage" [navParams]="{profile: profile}" ion-button>
+        <ion-icon name="brush"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <p>Username: </p>
+      <ion-badge margin color="secondary" item-end>{{profile.firstname}} {{profile.lastname}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="transgender" item-start></ion-icon>
+      <p>Gender</p>
+      <ion-badge color="secondary" item-end></ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar" item-start></ion-icon>
+      <p>Birthday</p>
+      <ion-badge color="secondary" item-end></ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="trending-up" item-start></ion-icon>
+      <p>Height</p>
+      <ion-badge color="secondary" item-end></ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="man" item-start></ion-icon>
+      <p>Weight</p>
+      <ion-badge color="secondary" item-end></ion-badge>
+    </ion-item>    
+    <ion-item>
+      <ion-icon name="body" item-start></ion-icon>
+      <p>Ligpositie</p>
+      <ion-badge color="secondary" item-end></ion-badge>
+    </ion-item>
+    <ion-card-content>
+      <p>Je account is af! Als je informatie wilt aanpassen klik dan hier</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
+</ion-footer>

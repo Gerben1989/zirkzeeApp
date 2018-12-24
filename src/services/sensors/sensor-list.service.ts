@@ -5,25 +5,31 @@ import { Sensor } from '../../models/sensor/sensor.model';
 @Injectable()
 export class SensorListService {
 
-    private sensorList = this.db.list<Sensor>('sensor-list');
+    private sensorListTest$ = this.afDatabase.list<Sensor>('sensor-list');
+    private sensorListLive$ = this.afDatabase.list<Sensor>('sensor-group/sensor-list');
 
-    constructor(private db: AngularFireDatabase) {
+    constructor(
+        private afDatabase: AngularFireDatabase) {
 
     }
 
-    getSensorList() {
-        return this.sensorList;
+    getSensorListTest() {
+        return this.sensorListTest$;
+    }
+
+    getSensorListLive() {
+        return this.sensorListLive$;
     }
 
     addSensor(sensor:Sensor) {
-        return this.sensorList.push(sensor);
+        return this.sensorListTest$.push(sensor);
     }
 
     editSensor(sensor:Sensor) {
-        return this.sensorList.update(sensor.key, sensor);
+        return this.sensorListTest$.update(sensor.key, sensor);
     }
 
     removeSensor(sensor:Sensor) {
-        return this.sensorList.remove(sensor.key);
+        return this.sensorListTest$.remove(sensor.key);
     }
 }

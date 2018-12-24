@@ -1,33 +1,33 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Create Account</ion-title>
+    <ion-title>Create Profile</ion-title>
   </ion-navbar>
 </ion-header>
-
+  
 <ion-content padding>
   <ion-item>
     <ion-label stacked>Voornaam</ion-label>
-    <ion-input [(ngModel)]="user.firstname" type="text"></ion-input>
+    <ion-input [(ngModel)]="profile.firstname" type="text"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label stacked>Achternaam</ion-label>
-    <ion-input [(ngModel)]="user.lastname" type="text"></ion-input>
+    <ion-input [(ngModel)]="profile.lastname" type="text"></ion-input>
   </ion-item>
-  <ion-item>
+  <!-- <ion-item>
     <ion-label stacked>Lengte</ion-label>
-    <ion-input [(ngModel)]="user.height"type="number"></ion-input>
+    <ion-input [(ngModel)]="profile.height"type="number"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label stacked>Gewicht</ion-label>
-    <ion-input [(ngModel)]="user.weight"type="number"></ion-input>
+    <ion-input [(ngModel)]="profile.weight"type="number"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Geboorte Datum</ion-label>
-    <ion-datetime [(ngModel)]="user.birthdate" displayFormat="MM/DD/YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="profile.birthdate" displayFormat="MM/DD/YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label>Geslacht</ion-label>
-    <ion-select [(ngModel)]="user.gender">
+    <ion-select [(ngModel)]="profile.gender">
       <ion-option value="M">Man</ion-option>
       <ion-option value="F">Vrouw</ion-option>
       <ion-option value="X">Anders</ion-option>
@@ -35,17 +35,17 @@
   </ion-item>
   <ion-item>
     <ion-label>Slaappositie</ion-label>
-    <ion-select [(ngModel)]="user.position">
+    <ion-select [(ngModel)]="profile.position">
       <ion-option value="1">Rug</ion-option>
       <ion-option value="2">Linkerzij</ion-option>
       <ion-option value="3">Rechterzij</ion-option>
       <ion-option value="4">Rollen</ion-option>
       <ion-option value="5">Buik</ion-option>
     </ion-select>
-  </ion-item>
-  <button ion-button block clear (click)="addUser(user)">Submit</button>
+  </ion-item> -->
+  <button ion-button block clear (click)="createProfile(profile)">Submit</button>
 </ion-content>
 
 <ion-footer>
-    <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
+  <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
 </ion-footer>

@@ -6,16 +6,12 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label stacked>Number</ion-label>
-    <ion-input [(ngModel)]="sensor.number" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>Value</ion-label>
-    <ion-input [(ngModel)]="sensor.value" type="text"></ion-input>
+    <ion-label stacked>Pressure</ion-label>
+    <ion-input [(ngModel)]="sensor.pressure" type="text"></ion-input>
   </ion-item>
   <button ion-button block clear (click)="addSensor(sensor)">Submit</button>
 </ion-content>
 
 <ion-footer>
-    <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
+  <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
 </ion-footer>
