@@ -21,7 +21,7 @@ export class ScanPage {
   sensorListTest$: Observable<Sensor[]>;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private sensorRef: SensorListService,
     private afAuth: AngularFireAuth) {
@@ -71,7 +71,7 @@ export class ScanPage {
   }
 
   ionViewWillLoad() {
-    this.profile = this.navParams.get('profile');  
+    this.profile = this.navParams.get('profile');
 
     this.afAuth.authState.subscribe(auth => {
       console.log("Scan Will Load");

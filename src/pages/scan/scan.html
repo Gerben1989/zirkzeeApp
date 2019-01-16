@@ -89,25 +89,23 @@
 <!--SPLIT-->
     <ion-row>
       <ion-col col-12>
-        <h2>User {{uid}}</h2>
-        <h2>Profile {{profile.key}}</h2>
-        <!-- <pre>{{ profile | json }}</pre> -->
+       <!-- <pre>{{ profile | json }}</pre> -->
         <h2>Versie 1</h2>
       </ion-col>
     </ion-row>
     <ion-row>
       <ng-container *ngFor="let scan of sensorList$ | async; let i=index;">
-            <!-- <ng-container *ngFor="let sensor of scan; let i=index;">
-              <ion-col col-2>
-                test
+          <!-- <ng-container *ngFor="let sensor of scan; let i=index;">
+            <ion-col col-2>
+              test
               <pre>{{ sensor | json}}</pre>
             </ion-col>
           </ng-container> -->
 
-          <ion-col col-12>
+          <!-- <ion-col col-12>
             voor elke scan
             <pre>{{ scan | json}}</pre>
-          </ion-col>
+          </ion-col> -->
       </ng-container>
     </ion-row>
     <ion-row>
