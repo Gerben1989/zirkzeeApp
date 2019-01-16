@@ -18,6 +18,7 @@ export class ProfilePage {
 
   ionViewWillLoad() {
     this.profile = this.navParams.get('profile');  
+    console.log(this.profile)
   }
   
   navigateToRootHomePage(): void {

@@ -47,6 +47,16 @@
       <p>Je account is af! Als je informatie wilt aanpassen klik dan hier</p>
     </ion-card-content>
   </ion-card>
+
+    <!-- <ng-container *ngFor="let list of profile | async; let i=index;">
+        <ion-col col-2 *ngIf="i>2">
+          {{ list | json }}
+        </ion-col>
+    </ng-container> -->
+    <pre>{{ profile | json }} </pre>
+
+
+
 </ion-content>
 
 <ion-footer>

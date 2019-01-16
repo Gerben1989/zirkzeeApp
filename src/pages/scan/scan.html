@@ -89,8 +89,26 @@
 <!--SPLIT-->
     <ion-row>
       <ion-col col-12>
+        <h2>User {{uid}}</h2>
+        <h2>Profile {{profile.key}}</h2>
+        <!-- <pre>{{ profile | json }}</pre> -->
         <h2>Versie 1</h2>
       </ion-col>
+    </ion-row>
+    <ion-row>
+      <ng-container *ngFor="let scan of sensorList$ | async; let i=index;">
+            <!-- <ng-container *ngFor="let sensor of scan; let i=index;">
+              <ion-col col-2>
+                test
+              <pre>{{ sensor | json}}</pre>
+            </ion-col>
+          </ng-container> -->
+
+          <ion-col col-12>
+            voor elke scan
+            <pre>{{ scan | json}}</pre>
+          </ion-col>
+      </ng-container>
     </ion-row>
     <ion-row>
       <ion-col col-1></ion-col>
@@ -168,7 +186,7 @@
       <ion-col col-1></ion-col>
     </ion-row>
 <!-- SPLIT -->
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-12>
         <h2>Versie 2</h2>
       </ion-col>
@@ -194,9 +212,9 @@
         <div style="background-color:#FF5500"></div>
         <div style="background-color:#FF0000"></div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 <!-- SPLIT -->
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-12>
         <h2>Versie 3</h2>
       </ion-col>
@@ -259,7 +277,7 @@
         </ng-container>
       </ion-col>
       <ion-col col-1></ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-content>
 

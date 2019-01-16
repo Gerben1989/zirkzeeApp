@@ -7,6 +7,7 @@ export class SensorListService {
 
     private sensorListTest$ = this.afDatabase.list<Sensor>('sensor-list');
     private sensorListLive$ = this.afDatabase.list<Sensor>('sensor-group/sensor-list');
+    
 
     constructor(
         private afDatabase: AngularFireDatabase) {
@@ -17,8 +18,14 @@ export class SensorListService {
         return this.sensorListTest$;
     }
 
-    getSensorListLive() {
-        return this.sensorListLive$;
+    getSensorListLive(uid: any, profileID: any) {
+        // return this.sensorListLive$;
+        console.log("getSensorListLive()")
+        console.log("UID: " + uid)
+        console.log("profileID: " + profileID)
+
+        return this.afDatabase.list<any>(`profile/${uid}/${profileID}`);
+        // return this.afDatabase.list<Sensor>(`sensor-group/sensor-list`);
     }
 
     addSensor(sensor:Sensor) {

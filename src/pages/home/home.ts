@@ -45,4 +45,8 @@ export class HomePage {
     this.navCtrl.push('ProfileListPage');
   }
 
+  navigateToScanSetupPage() {
+    this.navCtrl.push('ScanSetupPage');
+  }
+
 }

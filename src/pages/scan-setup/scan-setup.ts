@@ -6,12 +6,20 @@ import { ProfileService } from './../../services/profile/profile.service';
 import { Profile } from '../../models/profile/profile.model';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+
+/**
+ * Generated class for the ScanSetupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-profile-list',
-  templateUrl: 'profile-list.html',
+  selector: 'page-scan-setup',
+  templateUrl: 'scan-setup.html',
 })
-export class ProfileListPage {
+export class ScanSetupPage {
 
   profileListRef$: Observable<Profile[]>;  
 
@@ -22,7 +30,7 @@ export class ProfileListPage {
     private afAuth: AngularFireAuth) {
 
     this.afAuth.authState.subscribe(auth => {
-      console.log("Profile List Constructor: " + auth.uid)
+      // console.log("Scan Setup Constructor: " + auth.uid)
       this.profileListRef$ = this.profileRef
         .getProfiles(auth.uid)
         .snapshotChanges() //Key and Value pairs
@@ -31,13 +39,14 @@ export class ProfileListPage {
             key: c.payload.key, ...c.payload.val()
           }))
         }));
-      this.profileListRef$.subscribe(res => console.log(res))
+      // Logs all profiles connected to this UID
+      // this.profileListRef$.subscribe(res => console.log(res))
     });
 
   }
 
-  navigateToRootHomePage(): void {
-    this.navCtrl.setRoot('HomePage');
+  ionViewDidLoad() {
+    // console.log('ionViewDidLoad ScanSetupPage');
   }
 
 }
