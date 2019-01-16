@@ -1,4 +1,4 @@
-import { Component, Testability } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
@@ -72,12 +72,11 @@ export class ScanPage {
 
   ionViewWillLoad() {
     this.profile = this.navParams.get('profile');
-
     this.afAuth.authState.subscribe(auth => {
-      console.log("Scan Will Load");
-      console.log("UID: " + auth.uid)
-      console.log("Profile ID:  " + this.profile.key)
-      console.log(this.profile)
+      // console.log("Scan Will Load");
+      // console.log("UID: " + auth.uid)
+      // console.log("Profile ID:  " + this.profile.key)
+      // console.log(this.profile)
       this.uid = auth.uid;
       this.sensorList$ = this.sensorRef
         .getSensorListLive(auth.uid, this.profile.key) //Get SensorList for this UID and Profile ID
@@ -89,7 +88,6 @@ export class ScanPage {
         }));
       this.sensorList$.subscribe(res => console.log(res))
     });
-
   }
 
 }

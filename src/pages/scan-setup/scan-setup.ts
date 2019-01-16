@@ -40,7 +40,7 @@ export class ScanSetupPage {
           }))
         }));
       // Logs all profiles connected to this UID
-      // this.profileListRef$.subscribe(res => console.log(res))
+      this.profileListRef$.subscribe(res => console.log(res))
     });
 
   }
@@ -49,4 +49,7 @@ export class ScanSetupPage {
     // console.log('ionViewDidLoad ScanSetupPage');
   }
 
+  navigateToRootHomePage(): void {
+    this.navCtrl.setRoot('HomePage');
+  }
 }

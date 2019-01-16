@@ -6,7 +6,7 @@ import { Sensor } from '../../models/sensor/sensor.model';
 export class SensorListService {
 
     private sensorListTest$ = this.afDatabase.list<Sensor>('sensor-list');
-    private sensorListLive$ = this.afDatabase.list<Sensor>('sensor-group/sensor-list');
+    // private sensorListLive$ = this.afDatabase.list<Sensor>('sensor-group/sensor-list');
 
 
     constructor(
@@ -19,13 +19,11 @@ export class SensorListService {
     }
 
     getSensorListLive(uid: any, profileID: any) {
-        // return this.sensorListLive$;
-        console.log("getSensorListLive()")
-        console.log("UID: " + uid)
-        console.log("profileID: " + profileID)
+        return this.afDatabase.list<Sensor>(`profile/${uid}/${profileID}/sensor-groups/sensor-live`);
+    }
 
-        return this.afDatabase.list<any>(`profile/${uid}/${profileID}/sensor-groups/sensor-live`);
-        // return this.afDatabase.list<Sensor>(`sensor-group/sensor-list`);
+    getSensorGroups(uid: any, profileID: any) {
+        return this.afDatabase.list<Sensor>(`profile/${uid}/${profileID}/sensor-groups`);
     }
 
     addSensor(sensor:Sensor) {
