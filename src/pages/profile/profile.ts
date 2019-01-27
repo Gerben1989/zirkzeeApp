@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Testability } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
@@ -6,6 +6,8 @@ import { Profile } from '../../models/profile/profile.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { k } from '@angular/core/src/render3';
+import { ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,12 +19,14 @@ export class ProfilePage {
   profile: Profile;
   uid: any;
   sensorGroups$: Observable<any[]>; //Op ANY gezet als test
+  sensorArray: any = []
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private sensorRef: SensorListService,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    public modalCtrl: ModalController) {
   }
 
   ionViewWillLoad() {
@@ -43,16 +47,26 @@ export class ProfilePage {
         }));
       // this.sensorGroups$.subscribe(res => console.log(res.length))
       this.sensorGroups$.subscribe(res => {
-        console.log(res)
-        for(var i = 0; i < res.length; i++) {
-          console.log(res[i].key)
-        }
+
+        this.sensorArray = Object.keys(res).map(e => res[e]);
       })
     });
   }
 
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
+  }
+
+  generateArray(obj) {
+    return Object.keys(obj).map((key) => {return obj[key]})
+  }
+
+  onClickSensor(index) {
+    var obj = this.sensorArray[index]
+    var data = {data: obj}
+    var modalPage = this.modalCtrl.create('ModalPage', data);
+    modalPage.present();
+
   }
 
 }

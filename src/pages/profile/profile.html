@@ -37,7 +37,7 @@
       <ion-icon name="man" item-start></ion-icon>
       <p>Weight</p>
       <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>    
+    </ion-item>
     <ion-item>
       <ion-icon name="body" item-start></ion-icon>
       <p>Ligpositie</p>
@@ -48,17 +48,14 @@
   <ion-row>
     <p *ngIf="(sensorGroups$ | async)?.length==0">Dit profiel heeft nog geen scans gemaakt. <br><br> Ga naar scansetup om te beginnen</p>
     <h2 *ngIf="(sensorGroups$ | async)?.length!=0">Bekende scans</h2>
-    <ng-container *ngFor="let scan of sensorGroups$ | async; let i=index;">
-      <ion-col col-12>
-        <b>{{ i+1 }}:</b> {{ scan.key }}
-      </ion-col>
-    </ng-container>
+     <ion-col>
+        <ion-list>
+            <button ion-item *ngFor="let scan of sensorArray; let i = index" (click)="onClickSensor(i)"> {{scan.key}}</button>
+          </ion-list>
+     </ion-col>
   </ion-row>
-
 </ion-content>
 
 <ion-footer>
-
   <button ion-button block clear (click)="navigateToRootHomePage()"><ion-icon name="home"></ion-icon></button>
-  
 </ion-footer>

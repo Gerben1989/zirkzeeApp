@@ -13,10 +13,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ProfileListPage {
 
-  profileListRef$: Observable<Profile[]>;  
+  profileListRef$: Observable<Profile[]>;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private profileRef: ProfileService,
     private afAuth: AngularFireAuth) {
