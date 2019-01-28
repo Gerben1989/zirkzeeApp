@@ -10,7 +10,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 export class HomePage {
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
     private toast: ToastController) {
@@ -47,6 +47,10 @@ export class HomePage {
 
   navigateToScanSetupPage() {
     this.navCtrl.push('ScanSetupPage');
+  }
+
+  navigateToScanGraphPage() {
+    this.navCtrl.push('ScansGraphPage')
   }
 
 }

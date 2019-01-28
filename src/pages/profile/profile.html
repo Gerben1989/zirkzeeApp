@@ -54,6 +54,15 @@
           </ion-list>
      </ion-col>
   </ion-row>
+
+  <ion-row>
+      <ion-item *ngFor="let scan of sensorArray">
+          <ion-label>{{scan.key}}</ion-label>
+          <ion-checkbox (click)="selectMember(scan)"></ion-checkbox>
+        </ion-item>
+        <button ion-button block  (click)="genereerGrafiek()">Genereer Grafiek</button>
+  </ion-row>
+
 </ion-content>
 
 <ion-footer>

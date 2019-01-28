@@ -12,6 +12,8 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
 import { MyApp } from './app.component';
 import { SensorListService } from '../services/sensors/sensor-list.service';
 import { ProfileService } from './../services/profile/profile.service';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ProfileService } from './../services/profile/profile.service';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,3 +1,4 @@
+import { ProfileListPageModule } from './../profile-list/profile-list.module';
 import { Component, Testability } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
@@ -20,6 +21,8 @@ export class ProfilePage {
   uid: any;
   sensorGroups$: Observable<any[]>; //Op ANY gezet als test
   sensorArray: any = []
+  selectedArray :any = [];
+
 
   constructor(
     public navCtrl: NavController,
@@ -68,5 +71,16 @@ export class ProfilePage {
     modalPage.present();
 
   }
+
+  selectMember(data){
+      this.selectedArray.push(data);
+      console.log(this.selectedArray);
+   }
+
+   genereerGrafiek() {
+    var data = {data: this.selectedArray}
+    var modalPage = this.modalCtrl.create('ScanGraphModalPage', data);
+    modalPage.present();
+   }
 
 }
