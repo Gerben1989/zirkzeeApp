@@ -1,12 +1,10 @@
-import { Component, Testability } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
 import { Profile } from '../../models/profile/profile.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { k } from '@angular/core/src/render3';
 import { ModalController } from 'ionic-angular';
 
 @IonicPage()
@@ -20,6 +18,8 @@ export class ProfilePage {
   uid: any;
   sensorGroups$: Observable<any[]>; //Op ANY gezet als test
   sensorArray: any = []
+  sensorArray2: any = []
+  sensorGroupAmount: any;
 
   constructor(
     public navCtrl: NavController,
@@ -32,10 +32,6 @@ export class ProfilePage {
   ionViewWillLoad() {
     this.profile = this.navParams.get('profile');
     this.afAuth.authState.subscribe(auth => {
-      // console.log("Scan Will Load");
-      // console.log("UID: " + auth.uid)
-      // console.log("Profile ID:  " + this.profile.key)
-      // console.log(this.profile)
       this.uid = auth.uid;
       this.sensorGroups$ = this.sensorRef
         .getSensorGroups(auth.uid, this.profile.key) //Get SensorGroups for this UID and Profile ID
@@ -44,11 +40,11 @@ export class ProfilePage {
           return changes.map(c => ({
             key: c.payload.key, ...c.payload.val()
           }))
-        }));
-      // this.sensorGroups$.subscribe(res => console.log(res.length))
+      }));
+      this.sensorGroups$.subscribe(res => console.log(res))
       this.sensorGroups$.subscribe(res => {
-
         this.sensorArray = Object.keys(res).map(e => res[e]);
+        this.sensorGroupAmount = this.sensorArray.length;
       })
     });
   }
@@ -66,7 +62,6 @@ export class ProfilePage {
     var data = {data: obj}
     var modalPage = this.modalCtrl.create('ModalPage', data);
     modalPage.present();
-
   }
 
 }

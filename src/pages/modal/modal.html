@@ -121,10 +121,9 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1></ion-col>
           <ng-container *ngFor="let obj of sensorArray">
               <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
-                <ion-col col-2 *ngIf="i<5">
+                <ion-col col-3 *ngIf="i>=1 && i<=4">
                   <div *ngIf="sensor.pressure <= 145" style="background-color:#00FF00"><p>{{sensor.pressure}}</p></div>
                   <div *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292" style="background-color:#55FF00"><p>{{sensor.pressure}}</p></div>
                   <div *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438" style="background-color:#AAFF00"><p>{{sensor.pressure}}</p></div>
@@ -135,13 +134,11 @@
                 </ion-col>
               </ng-container>
           </ng-container>
-          <ion-col col-1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1></ion-col>
           <ng-container *ngFor="let obj of sensorArray">
               <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
-                  <ion-col col-2 *ngIf="i<10 && i>4">
+                  <ion-col col-3 *ngIf="i>=5 && i<=8">
                       <ng-container *ngIf="sensor.pressure <= 145"><div style="background-color:#00FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292"><div style="background-color:#55FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438"><div style="background-color:#AAFF00"><p>{{sensor.pressure}}</div></ng-container>
@@ -152,13 +149,11 @@
                     </ion-col>
               </ng-container>
           </ng-container>
-          <ion-col col-1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1></ion-col>
           <ng-container *ngFor="let obj of sensorArray">
               <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
-                  <ion-col col-2 *ngIf="i<15 && i>9">
+                  <ion-col col-3 *ngIf="i>=9 && i<=12">
                       <ng-container *ngIf="sensor.pressure <= 145"><div style="background-color:#00FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292"><div style="background-color:#55FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438"><div style="background-color:#AAFF00"><p>{{sensor.pressure}}</div></ng-container>
@@ -169,13 +164,11 @@
                     </ion-col>
               </ng-container>
           </ng-container>
-          <ion-col col-1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1></ion-col>
           <ng-container *ngFor="let obj of sensorArray">
               <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
-                  <ion-col col-2 *ngIf="i<20 && i>14">
+                  <ion-col col-3 *ngIf="i>=13 && i<=16">
                       <ng-container *ngIf="sensor.pressure <= 145"><div style="background-color:#00FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292"><div style="background-color:#55FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438"><div style="background-color:#AAFF00"><p>{{sensor.pressure}}</div></ng-container>
@@ -186,13 +179,11 @@
                     </ion-col>
               </ng-container>
           </ng-container>
-          <ion-col col-1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1></ion-col>
           <ng-container *ngFor="let obj of sensorArray">
               <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
-                  <ion-col col-2 *ngIf="i>19">
+                  <ion-col col-3 *ngIf="i>=17 && i<=20">
                       <ng-container *ngIf="sensor.pressure <= 145"><div style="background-color:#00FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292"><div style="background-color:#55FF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438"><div style="background-color:#AAFF00"><p>{{sensor.pressure}}</div></ng-container>
@@ -203,8 +194,23 @@
                     </ion-col>
               </ng-container>
           </ng-container>
-          <ion-col col-1></ion-col>
         </ion-row>
+        <ion-row>
+          <ng-container *ngFor="let obj of sensorArray">
+              <ng-container *ngFor="let sensor of generateArray(obj); let i = index">
+                  <ion-col col-3 *ngIf="i>=21 && i<=24">
+                      <ng-container *ngIf="sensor.pressure <= 145"><div style="background-color:#00FF00"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 146 && sensor.pressure <= 292"><div style="background-color:#55FF00"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 293 && sensor.pressure <= 438"><div style="background-color:#AAFF00"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                    </ion-col>
+              </ng-container>
+          </ng-container>
+        </ion-row>
+        <pre>{{sensorArray | json}}</pre>
       </ng-container>
     </ion-grid>
   </ion-content>

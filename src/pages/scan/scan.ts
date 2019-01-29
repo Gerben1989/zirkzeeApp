@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
+import { ApiService } from '../../services/api/api.service';
 import { Profile } from '../../models/profile/profile.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -24,6 +25,7 @@ export class ScanPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private sensorRef: SensorListService,
+    private apiRef: ApiService,
     private afAuth: AngularFireAuth) {
 
     //TESTDATA
@@ -36,47 +38,11 @@ export class ScanPage {
         }))
       }));
     this.sensorListTest$.subscribe(res => console.log(res))
-
-    //REALTIME DATA
-    // this.sensorList$ = this.sensorRef
-    // .getSensorListLive() //DB LIST
-    // .snapshotChanges() //Key and Value pairs
-    // .pipe(map(changes => {
-    //   return changes.map(c => ({
-    //     key: c.payload.key, ...c.payload.val()
-    //   }))
-    // }));
-    // this.sensorList$.subscribe(res => console.log(res))
-
-    // this.afAuth.authState.subscribe(auth => {
-    //   console.log("Scan Constructor: " + auth.uid)
-    //   this.uid = auth.uid;
-    //   this.sensorList$ = this.sensorRef
-    //     .getSensorListLive(auth.uid) //Get SensorList for this UID
-    //     .snapshotChanges() //Key and Value pairs
-    //     .pipe(map(changes => {
-    //       return changes.map(c => ({
-    //         key: c.payload.key, ...c.payload.val()
-    //       }))
-    //     }));
-    //   this.sensorList$.subscribe(res => console.log(res))
-    // });
-
-
-
-  }
-
-  navigateToRootHomePage(): void {
-    this.navCtrl.setRoot('HomePage');
   }
 
   ionViewWillLoad() {
     this.profile = this.navParams.get('profile');
     this.afAuth.authState.subscribe(auth => {
-      // console.log("Scan Will Load");
-      // console.log("UID: " + auth.uid)
-      // console.log("Profile ID:  " + this.profile.key)
-      // console.log(this.profile)
       this.uid = auth.uid;
       this.sensorList$ = this.sensorRef
         .getSensorListLive(auth.uid, this.profile.key) //Get SensorList for this UID and Profile ID
@@ -86,8 +52,24 @@ export class ScanPage {
             key: c.payload.key, ...c.payload.val()
           }))
         }));
-      this.sensorList$.subscribe(res => console.log(res))
+      this.sensorList$.subscribe(res => console.log(res)) //userID/profileID/sensor-groups/sensor-live
     });
+  }
+
+  synchronizeStart(profileKey){
+    this.afAuth.authState.subscribe(auth => {
+      this.apiRef.synchronizeServiceStart(auth.uid, profileKey);
+    });
+  }
+
+  sleepCycleStart(profileKey){
+    this.afAuth.authState.subscribe(auth => {
+      this.apiRef.sleepCycleServiceStart(auth.uid, profileKey);
+    });
+  }
+
+  navigateToRootHomePage(): void {
+    this.navCtrl.setRoot('HomePage');
   }
 
 }

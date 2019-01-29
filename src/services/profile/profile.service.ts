@@ -3,7 +3,6 @@ import { Profile } from './../../models/profile/profile.model';
 import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
 @Injectable()
 export class ProfileService {
 
