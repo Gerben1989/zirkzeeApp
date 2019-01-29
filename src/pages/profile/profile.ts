@@ -23,6 +23,8 @@ export class ProfilePage {
   sensorArray: any = []
   selectedArray :any = [];
 
+  sensorArray2: any = []
+  sensorGroupAmount: any;
 
   constructor(
     public navCtrl: NavController,
@@ -35,10 +37,6 @@ export class ProfilePage {
   ionViewWillLoad() {
     this.profile = this.navParams.get('profile');
     this.afAuth.authState.subscribe(auth => {
-      // console.log("Scan Will Load");
-      // console.log("UID: " + auth.uid)
-      // console.log("Profile ID:  " + this.profile.key)
-      // console.log(this.profile)
       this.uid = auth.uid;
       this.sensorGroups$ = this.sensorRef
         .getSensorGroups(auth.uid, this.profile.key) //Get SensorGroups for this UID and Profile ID
@@ -47,11 +45,11 @@ export class ProfilePage {
           return changes.map(c => ({
             key: c.payload.key, ...c.payload.val()
           }))
-        }));
-      // this.sensorGroups$.subscribe(res => console.log(res.length))
+      }));
+      this.sensorGroups$.subscribe(res => console.log(res))
       this.sensorGroups$.subscribe(res => {
-
         this.sensorArray = Object.keys(res).map(e => res[e]);
+        this.sensorGroupAmount = this.sensorArray.length;
       })
     });
   }
@@ -69,7 +67,6 @@ export class ProfilePage {
     var data = {data: obj}
     var modalPage = this.modalCtrl.create('ModalPage', data);
     modalPage.present();
-
   }
 
   selectMember(data){

@@ -17,20 +17,7 @@ export class HomePage {
   }
 
   ionViewWillLoad() {
-    // this.afAuth.authState.subscribe(data => {
-    //   if(data.email && data.uid) {
-    //     this.toast.create({
-    //       message: `Welkom bij Zirkzee, ${data.email}`,
-    //       duration: 3000
-    //     }).present();
-    //   }
-    //   else {
-    //     this.toast.create({
-    //       message: "Geen authenticatie gevonden...",
-    //       duration: 3000
-    //     }).present();
-    //   }
-    // })
+
   }
 
   navigateToScanPage() {

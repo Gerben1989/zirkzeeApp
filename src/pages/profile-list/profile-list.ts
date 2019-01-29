@@ -14,6 +14,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class ProfileListPage {
 
   profileListRef$: Observable<Profile[]>;
+  firebaseUser: any;
 
   constructor(
     public navCtrl: NavController,
@@ -22,7 +23,7 @@ export class ProfileListPage {
     private afAuth: AngularFireAuth) {
 
     this.afAuth.authState.subscribe(auth => {
-      console.log("Profile List Constructor: " + auth.uid)
+      this.firebaseUser = auth.email
       this.profileListRef$ = this.profileRef
         .getProfiles(auth.uid)
         .snapshotChanges() //Key and Value pairs
@@ -30,8 +31,16 @@ export class ProfileListPage {
           return changes.map(c => ({
             key: c.payload.key, ...c.payload.val()
           }))
-        }));
+      }));
+
       this.profileListRef$.subscribe(res => console.log(res))
+
+      this.profileListRef$.subscribe(res => {
+          res.forEach(element => {
+            console.log(element.key);
+          })
+      })
+
     });
 
   }

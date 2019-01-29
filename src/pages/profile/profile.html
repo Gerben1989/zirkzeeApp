@@ -12,42 +12,43 @@
 </ion-header>
 
 <ion-content padding>
-
-  <ion-card>
-    <ion-item>
-      <p>Username: </p>
-      <ion-badge margin color="secondary" item-end>{{profile.firstname}} {{profile.lastname}}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="transgender" item-start></ion-icon>
-      <p>Gender</p>
-      <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="calendar" item-start></ion-icon>
-      <p>Birthday</p>
-      <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="trending-up" item-start></ion-icon>
-      <p>Height</p>
-      <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="man" item-start></ion-icon>
-      <p>Weight</p>
-      <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="body" item-start></ion-icon>
-      <p>Ligpositie</p>
-      <ion-badge color="secondary" item-end></ion-badge>
-    </ion-item>
-  </ion-card>
-
+  <ion-row>
+    <ion-card>
+      <ion-item>
+        <p>Username: </p>
+        <ion-badge margin color="secondary" item-end>{{profile.firstname}} {{profile.lastname}}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="transgender" item-start></ion-icon>
+        <p>Gender</p>
+        <ion-badge color="secondary" item-end></ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" item-start></ion-icon>
+        <p>Birthday</p>
+        <ion-badge color="secondary" item-end></ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="trending-up" item-start></ion-icon>
+        <p>Height</p>
+        <ion-badge color="secondary" item-end></ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="man" item-start></ion-icon>
+        <p>Weight</p>
+        <ion-badge color="secondary" item-end></ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="body" item-start></ion-icon>
+        <p>Ligpositie</p>
+        <ion-badge color="secondary" item-end></ion-badge>
+      </ion-item>
+    </ion-card>
+  </ion-row>
+  <br/>
   <ion-row>
     <p *ngIf="(sensorGroups$ | async)?.length==0">Dit profiel heeft nog geen scans gemaakt. <br><br> Ga naar scansetup om te beginnen</p>
-    <h2 *ngIf="(sensorGroups$ | async)?.length!=0">Bekende scans</h2>
+    <h2 *ngIf="(sensorGroups$ | async)?.length!=0">Aantal bekende scans: {{sensorGroupAmount}}</h2>
      <ion-col>
         <ion-list>
             <button ion-item *ngFor="let scan of sensorArray; let i = index" (click)="onClickSensor(i)"> {{scan.key}}</button>
