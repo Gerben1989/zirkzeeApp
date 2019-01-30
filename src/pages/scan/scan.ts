@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
 import { ApiService } from '../../services/api/api.service';
@@ -20,12 +20,14 @@ export class ScanPage {
   uid: any;
   sensorList$: Observable<any[]>; //Op ANY gezet als test
   sensorListTest$: Observable<Sensor[]>;
+  loading: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private sensorRef: SensorListService,
     private apiRef: ApiService,
+    private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth) {
 
     //TESTDATA
@@ -38,9 +40,11 @@ export class ScanPage {
         }))
       }));
     this.sensorListTest$.subscribe(res => console.log(res))
+
   }
 
   ionViewWillLoad() {
+
     this.profile = this.navParams.get('profile');
     this.afAuth.authState.subscribe(auth => {
       this.uid = auth.uid;
@@ -52,11 +56,22 @@ export class ScanPage {
             key: c.payload.key, ...c.payload.val()
           }))
         }));
-      this.sensorList$.subscribe(res => console.log(res)) //userID/profileID/sensor-groups/sensor-live
+      this.sensorList$.subscribe(res => {
+       console.log(res);
+      }) //userID/profileID/sensor-groups/sensor-live
     });
   }
 
   synchronizeStart(profileKey){
+
+    // this.loading = this.loadingCtrl.create({
+    //   content: 'Getting values'
+    // });
+
+    // this.loading.present().then(() => {
+
+    // });
+
     this.afAuth.authState.subscribe(auth => {
       this.apiRef.synchronizeServiceStart(auth.uid, profileKey);
     });

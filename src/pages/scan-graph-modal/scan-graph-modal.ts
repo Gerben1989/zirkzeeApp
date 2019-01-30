@@ -22,17 +22,16 @@ export class ScanGraphModalPage {
   }
 
   ionViewDidLoad() {
-    let obj = this.navParams.get('data')
+    let obj = this.navParams.get('data');
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
         type: 'line',
         data: {
-            labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+            labels: [1,2,3,4,5,6],
             datasets: []
         }
     });
     let arr = [];
-
     for (var i in obj) {
       let temp = []
       for (var j in obj[i]){

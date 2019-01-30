@@ -189,7 +189,7 @@
       <ng-container *ngIf="(sensorList$ | async)?.length==24">
         <button ion-button block clear (click)="synchronizeStart(profile.key)">Resynchronize</button>
       </ng-container>
-          
+
       <ion-row>
         <ng-container *ngFor="let sensor of sensorList$ | async; let i=index;">
           <ion-col col-12>

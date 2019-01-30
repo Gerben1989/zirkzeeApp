@@ -29,7 +29,7 @@ import { ApiService } from './../services/api/api.service';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ChartsModule
+    ChartsModule,
     AngularFireAuthModule,
     ProgressBarModule
   ],
