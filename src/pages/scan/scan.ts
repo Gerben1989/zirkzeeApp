@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
 import { ApiService } from '../../services/api/api.service';
@@ -27,7 +27,6 @@ export class ScanPage {
     public navParams: NavParams,
     private sensorRef: SensorListService,
     private apiRef: ApiService,
-    private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth) {
 
     //TESTDATA

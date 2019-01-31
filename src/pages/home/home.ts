@@ -1,6 +1,5 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,9 +10,7 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private afAuth: AngularFireAuth,
-    private toast: ToastController) {
+    public navParams: NavParams) {
   }
 
   ionViewWillLoad() {

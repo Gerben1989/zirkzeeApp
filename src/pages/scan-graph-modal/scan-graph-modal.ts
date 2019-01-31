@@ -39,15 +39,47 @@ export class ScanGraphModalPage {
       }
       arr.push(temp);
     }
+    console.log(arr)
 
-    for (var k = 0; k < arr.length; k++) {
+    let totalArr = []
+    var t:number; 
+    for(t=0; t<arr.length; t++){
+      console.log(arr[t])
+      var u:number;
+      for(u=0; u<arr[t].length; u++){
+        if(u !== 0){
+          if(t == 0){
+            totalArr[u-1] = arr[t][u]
+          }else{
+            totalArr[u-1] += arr[t][u]
+          }
+        }
+      }
+    }
+    console.log(totalArr)
 
+    let rowAvgArr = []
+    var v:number; 
+    for(v=0; v<6; v++){
+      var w:number;
+      for(w=0; w<4; w++){
+        if(w == 0){
+          rowAvgArr[v] = totalArr[w+(4*v)]
+        }else{
+          rowAvgArr[v] += totalArr[w+(4*v)]
+        }
+      }
+      rowAvgArr[v] = (rowAvgArr[v]/arr.length)/4
+    }
+    console.log(rowAvgArr)
+
+    for (var k = 0; k < rowAvgArr.length; k++) {
       this.lineChart.data.datasets.push({
         label: k,
         fill: false,
         backgroundColor: this.colors[k],
         lineTension: 0.1,
-        data: arr[k],
+        data: rowAvgArr,
         borderColor: this.colors[k],
         borderCapStyle: 'butt',
         borderDash: [],
@@ -64,7 +96,6 @@ export class ScanGraphModalPage {
         pointHitRadius: 10,
         spanGaps: false,
       });
-
       this.lineChart.update();
     }
   }

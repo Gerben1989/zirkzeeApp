@@ -32,15 +32,12 @@ export class ProfileListPage {
             key: c.payload.key, ...c.payload.val()
           }))
       }));
-
-      this.profileListRef$.subscribe(res => console.log(res))
-
-      this.profileListRef$.subscribe(res => {
-          res.forEach(element => {
-            console.log(element.key);
-          })
-      })
-
+      // this.profileListRef$.subscribe(res => console.log(res))
+      // this.profileListRef$.subscribe(res => {
+      //     res.forEach(element => {
+      //       console.log(element.key);
+      //     })
+      // })
     });
 
   }

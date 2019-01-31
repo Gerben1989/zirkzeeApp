@@ -1,13 +1,10 @@
-import { ProfileListPageModule } from './../profile-list/profile-list.module';
-import { Component, Testability } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Sensor } from '../../models/sensor/sensor.model';
 import { SensorListService } from '../../services/sensors/sensor-list.service';
 import { Profile } from '../../models/profile/profile.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { k } from '@angular/core/src/render3';
 import { ModalController } from 'ionic-angular';
 
 @IonicPage()
@@ -46,7 +43,7 @@ export class ProfilePage {
             key: c.payload.key, ...c.payload.val()
           }))
       }));
-      this.sensorGroups$.subscribe(res => console.log(res))
+      // this.sensorGroups$.subscribe(res => console.log(res))
       this.sensorGroups$.subscribe(res => {
         this.sensorArray = Object.keys(res).map(e => res[e]);
         this.sensorGroupAmount = this.sensorArray.length;
@@ -70,12 +67,43 @@ export class ProfilePage {
   }
 
   selectMember(data){
+    var match = this.checkArray(data);
+    if(!match){
       this.selectedArray.push(data);
-      console.log(this.selectedArray);
-   }
+    }
+    // console.log(this.selectedArray);
+  }
+
+  checkArray(data){
+    var i:number; 
+    for(i=0; i<this.selectedArray.length; i++){
+      if(data.key === this.selectedArray[i].key){
+        delete this.selectedArray[i]
+        this.sortArray()
+        return true
+      }
+    }
+    return false
+  }
+
+  sortArray(){
+    var result = [];
+    var offset = 0;
+    var i:number; 
+    for(i=0; i<this.selectedArray.length; i++){
+      var value = this.selectedArray[i];
+      if (value) {
+        result[i-offset] = value;
+      }else{
+        offset++
+      }
+    }
+    this.selectedArray = result;
+  }
 
    genereerGrafiek() {
-    var data = {data: this.selectedArray}
+    var data = {data: this.selectedArray};
+    // this.selectedArray = [];
     var modalPage = this.modalCtrl.create('ScanGraphModalPage', data);
     modalPage.present();
    }
