@@ -34,8 +34,16 @@ export class ScanGraphModalPage {
     let arr = [];
     for (var i in obj) {
       let temp = []
+      let counter = 0;
+      let sum = 0;
+      delete obj[i].key
       for (var j in obj[i]){
-        temp.push(obj[i][j].pressure)
+        if (counter % 4 == 0) {
+          temp.push((sum / 4));
+          sum = 0;
+        }
+        sum += obj[i][j].pressure;
+        counter++;
       }
       arr.push(temp);
     }
