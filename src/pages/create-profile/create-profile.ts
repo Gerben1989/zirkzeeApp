@@ -11,8 +11,12 @@ import { Profile } from '../../models/profile/profile.model';
 export class CreateProfilePage {
 
   profile: Profile = {
-    firstname: undefined,
-    lastname: undefined
+    firstname: "",
+    lastname: "",
+    height: undefined,
+    weight: undefined,
+    gender: "",
+    birthdate: undefined,
   }
 
   constructor(

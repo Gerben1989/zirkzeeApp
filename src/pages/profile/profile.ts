@@ -71,7 +71,6 @@ export class ProfilePage {
     if(!match){
       this.selectedArray.push(data);
     }
-    // console.log(this.selectedArray);
   }
 
   checkArray(data){
@@ -103,9 +102,12 @@ export class ProfilePage {
 
    genereerGrafiek() {
     var data = {data: this.selectedArray};
-    // this.selectedArray = [];
     var modalPage = this.modalCtrl.create('ScanGraphModalPage', data);
     modalPage.present();
+   }
+
+   navigateToScanSetupPage(){
+    this.navCtrl.setRoot('ScanSetupPage');
    }
 
 }

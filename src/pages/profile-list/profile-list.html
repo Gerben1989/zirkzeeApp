@@ -14,9 +14,12 @@
 
 <ion-content padding>
   <p>Profielen voor gebruiker: {{firebaseUser}}</p>
-  <h1 *ngIf="(profileListRef$ | async)?.length==0">
-    Je hebt nog geen profiel(en) aangemaakt. Klik rechtsboven op de + om te beginnen!
-  </h1>
+  <ng-container *ngIf="(profileListRef$ | async)?.length==0">
+    <h1>
+      Je hebt nog geen profiel(en) aangemaakt!
+    </h1>
+    <button ion-button block clear navPush="CreateProfilePage">Profiel Aanmaken</button>
+  </ng-container>
   <ng-container *ngFor="let profile of profileListRef$ | async">
     <ion-card detail-push navPush="ProfilePage" [navParams]="{profile: profile}">
       <ion-item>

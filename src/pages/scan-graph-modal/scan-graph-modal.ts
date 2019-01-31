@@ -23,6 +23,7 @@ export class ScanGraphModalPage {
 
   ionViewDidLoad() {
     let obj = this.navParams.get('data');
+    console.log(obj)
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
         type: 'line',
@@ -41,45 +42,25 @@ export class ScanGraphModalPage {
     }
     console.log(arr)
 
-    let totalArr = []
-    var t:number; 
-    for(t=0; t<arr.length; t++){
-      console.log(arr[t])
-      var u:number;
-      for(u=0; u<arr[t].length; u++){
-        if(u !== 0){
-          if(t == 0){
-            totalArr[u-1] = arr[t][u]
-          }else{
-            totalArr[u-1] += arr[t][u]
-          }
-        }
-      }
-    }
+    let goodArr = this.removeKeys(arr)
+    console.log(goodArr)
+
+    let totalArr = this.totalArr(arr)
     console.log(totalArr)
 
-    let rowAvgArr = []
-    var v:number; 
-    for(v=0; v<6; v++){
-      var w:number;
-      for(w=0; w<4; w++){
-        if(w == 0){
-          rowAvgArr[v] = totalArr[w+(4*v)]
-        }else{
-          rowAvgArr[v] += totalArr[w+(4*v)]
-        }
-      }
-      rowAvgArr[v] = (rowAvgArr[v]/arr.length)/4
-    }
+    let rowAvgArr = this.rowAvgArr(arr, totalArr)
     console.log(rowAvgArr)
 
-    for (var k = 0; k < rowAvgArr.length; k++) {
+    let rowAvgArrs = this.rowAvgArrs(goodArr)
+    console.log(rowAvgArrs)
+
+    for (var k = 0; k < rowAvgArrs.length; k++) {
       this.lineChart.data.datasets.push({
         label: k,
         fill: false,
         backgroundColor: this.colors[k],
         lineTension: 0.1,
-        data: rowAvgArr,
+        data: rowAvgArrs[k],
         borderColor: this.colors[k],
         borderCapStyle: 'butt',
         borderDash: [],
@@ -98,6 +79,87 @@ export class ScanGraphModalPage {
       });
       this.lineChart.update();
     }
+  }
+
+
+  rowAvgArrs(arr){
+    // console.log(arr)
+    let rowAvgArrs = []
+    var x:number; 
+    for(x=0; x<arr.length; x++){
+      let temp = []
+      // temp.push(arr[x])
+      // temp = arr[x]
+      // console.log(temp)
+
+      var y:number;
+      for(y=0; y<6; y++){
+        var z:number;
+        for(z=0; z<4; z++){
+          if( z == 0){
+            temp[y] = arr[x][z+(4*y)]
+          }else{
+            temp[y] += arr[x][z+(4*y)]
+          }
+        }
+        temp[y] = temp[y]/4
+      }
+      // console.log(temp)
+      rowAvgArrs.push(temp)
+    }
+    // console.log(rowAvgArrs)
+    return rowAvgArrs
+  }
+
+  //Maakt gemiddelde van alle geselecteerde scans
+  rowAvgArr(arr, totalArr){
+    let rowAvgArr = []
+    var v:number; 
+    for(v=0; v<6; v++){
+      var w:number;
+      for(w=0; w<4; w++){
+        if(w == 0){
+          rowAvgArr[v] = totalArr[w+(4*v)]
+        }else{
+          rowAvgArr[v] += totalArr[w+(4*v)]
+        }
+      }
+      rowAvgArr[v] = (rowAvgArr[v]/arr.length)/4
+    }
+    return rowAvgArr
+  }
+
+  totalArr(arr){
+    let totalArr = []
+    var t:number; 
+    for(t=0; t<arr.length; t++){
+      // console.log(arr[t])
+      var u:number;
+      for(u=0; u<arr[t].length; u++){
+        if(u !== 0){
+          if(t == 0){
+            totalArr[u-1] = arr[t][u]
+          }else{
+            totalArr[u-1] += arr[t][u]
+          }
+        }
+      }
+    }
+    return totalArr
+  }
+
+  removeKeys(arr){
+    let goodArr = []
+    var x:number; 
+    for(x=0; x<arr.length; x++){
+      let temp = []
+      var y:number;
+      for(y=1; y<arr[x].length; y++){
+        temp.push(arr[x][y])
+      }
+      goodArr.push(temp)
+    }
+    return goodArr
   }
 
   public closeModal() {

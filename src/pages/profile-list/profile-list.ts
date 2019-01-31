@@ -41,6 +41,10 @@ export class ProfileListPage {
     });
 
   }
+  
+  navigateToCreateProfilePage(): void {
+    this.navCtrl.setRoot('CreateProfilePage');
+  }
 
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');

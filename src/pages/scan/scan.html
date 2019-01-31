@@ -92,7 +92,8 @@
 <!--SPLIT-->
     <ng-container *ngIf="(sensorList$ | async)?.length==0">
       <h2>
-        <b>Geen live data gevonden voor profiel:</b><br>{{profile.firstname}} {{profile.lastname}}<br>{{profile.key}}
+        <b>Geen scan data gevonden voor profiel:</b><br><br>{{profile.firstname}} {{profile.lastname}}
+        <!-- <br>{{profile.key}} -->
       </h2>
       <button ion-button block clear (click)="synchronizeStart(profile.key)">Synchronize Now</button>
     </ng-container>
@@ -104,7 +105,7 @@
       <ion-row>
         <ion-col col-12>
           <!-- UID/ProfileID/sensor-groups/sensor-live -->
-          <h2>Live Data</h2>
+          <h2>Scan Data</h2>
         </ion-col>
       </ion-row>
       <ion-row>

@@ -49,6 +49,10 @@ export class ScanSetupPage {
     // console.log('ionViewDidLoad ScanSetupPage');
   }
 
+  navigateToCreateProfilePage(): void {
+    this.navCtrl.setRoot('CreateProfilePage');
+  }
+
   navigateToRootHomePage(): void {
     this.navCtrl.setRoot('HomePage');
   }

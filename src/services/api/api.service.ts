@@ -12,7 +12,7 @@ export class ApiService {
             "user_id": uid,
             "profile_id": profileid
         }
-        return this.httpClient.post("http://24c2cc65.ngrok.io", postData)
+        return this.httpClient.post("http://4284a6ea.ngrok.io", postData)
             .subscribe(data => {
                 console.log(data['_body']);
             }, error => {
@@ -25,7 +25,7 @@ export class ApiService {
             "user_id": uid,
             "profile_id": profileid
         }
-        return this.httpClient.post("http://24c2cc65.ngrok.io", postData)
+        return this.httpClient.post("http://4284a6ea.ngrok.io", postData)
             .subscribe(data => {
                 console.log(data['_body']);
             }, error => {
