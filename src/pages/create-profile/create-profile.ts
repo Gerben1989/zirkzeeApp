@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfileService } from '../../services/profile/profile.service';
 import { Profile } from '../../models/profile/profile.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -19,10 +20,23 @@ export class CreateProfilePage {
     birthdate: undefined,
   }
 
+  authForm: FormGroup;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public formBuilder: FormBuilder,
     private profileService: ProfileService) {
+
+      this.authForm = formBuilder.group({
+        'firstname': ['', Validators.compose([Validators.required])],
+        'lastname': ['', Validators.compose([Validators.required])],
+        'length': ['', Validators.compose([Validators.required])],
+        'weight': ['', Validators.compose([Validators.required])],
+        'birthdate': ['', Validators.compose([Validators.required])],
+        'gender': ['', Validators.compose([Validators.required])],
+      });
+      
   }
 
   createProfile(profile: Profile) {

@@ -101,10 +101,23 @@ export class ProfilePage {
   }
 
    genereerGrafiek() {
-    var data = {data: this.selectedArray};
+    var data = {
+      data: this.selectedArray,
+      avg: false
+    };
     var modalPage = this.modalCtrl.create('ScanGraphModalPage', data);
     modalPage.present();
    }
+
+   genereerAvgGrafiek() {
+    var data = {
+      data: this.selectedArray,
+      avg: true
+    };
+    var modalPage = this.modalCtrl.create('ScanGraphModalPage', data);
+    modalPage.present();
+   }
+
 
    navigateToScanSetupPage(){
     this.navCtrl.setRoot('ScanSetupPage');

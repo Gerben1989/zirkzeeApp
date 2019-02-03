@@ -130,7 +130,7 @@
                   <div *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584" style="background-color:#FFFF00"><p>{{sensor.pressure}}</p></div>
                   <div *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730" style="background-color:#FFAA00"><p>{{sensor.pressure}}</p></div>
                   <div *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871" style="background-color:#FF5500"><p>{{sensor.pressure}}</p></div>
-                  <div *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023" style="background-color:#FF0000"><p>{{sensor.pressure}}</p></div>
+                  <div *ngIf="sensor.pressure >= 872" style="background-color:#FF0000"><p>{{sensor.pressure}}</p></div>
                 </ion-col>
               </ng-container>
           </ng-container>
@@ -145,7 +145,7 @@
                       <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
-                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
                     </ion-col>
               </ng-container>
           </ng-container>
@@ -160,7 +160,7 @@
                       <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
-                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
                     </ion-col>
               </ng-container>
           </ng-container>
@@ -175,7 +175,7 @@
                       <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
-                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
                     </ion-col>
               </ng-container>
           </ng-container>
@@ -190,7 +190,7 @@
                       <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
-                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
                     </ion-col>
               </ng-container>
           </ng-container>
@@ -205,12 +205,12 @@
                       <ng-container *ngIf="sensor.pressure >= 439 && sensor.pressure <= 584"><div style="background-color:#FFFF00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 585 && sensor.pressure <= 730"><div style="background-color:#FFAA00"><p>{{sensor.pressure}}</div></ng-container>
                       <ng-container *ngIf="sensor.pressure >= 731 && sensor.pressure <= 871"><div style="background-color:#FF5500"><p>{{sensor.pressure}}</div></ng-container>
-                      <ng-container *ngIf="sensor.pressure >= 872 && sensor.pressure <= 1023"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
+                      <ng-container *ngIf="sensor.pressure >= 872"><div style="background-color:#FF0000"><p>{{sensor.pressure}}</div></ng-container>
                     </ion-col>
               </ng-container>
           </ng-container>
         </ion-row>
-        <pre>{{sensorArray | json}}</pre>
+        <!-- <pre>{{sensorArray | json}}</pre> -->
       </ng-container>
     </ion-grid>
   </ion-content>

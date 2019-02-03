@@ -9,11 +9,9 @@ import { Chart } from 'chart.js';
 })
 export class ScanGraphModalPage {
 
-
   @ViewChild('lineCanvas') lineCanvas;
   lineChart: any
   test= [];
-
   colors = ['#488aff','#32db64','#f53d3d',' #FF5733', '#48C9B0']
 
   constructor(public navCtrl: NavController,
@@ -23,15 +21,29 @@ export class ScanGraphModalPage {
 
   ionViewDidLoad() {
     let obj = this.navParams.get('data');
-    console.log(obj)
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+    let avg = this.navParams.get('avg');
 
-        type: 'line',
-        data: {
-            labels: [1,2,3,4,5,6],
-            datasets: []
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+      type: 'line',
+      data: {
+          labels: [1,2,3,4,5,6],
+          datasets: []
+      },
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    reverse: true,
+                    suggestedMax: "1000",
+                    stepSize: 100,
+                    stepValue: 10,
+                }
+            }]
         }
+      }
     });
+
     let arr = [];
     for (var i in obj) {
       let temp = []
@@ -40,38 +52,31 @@ export class ScanGraphModalPage {
       }
       arr.push(temp);
     }
-    console.log(arr)
-
-    let goodArr = this.removeKeys(arr)
-    console.log(goodArr)
-
-    let totalArr = this.totalArr(arr)
-    console.log(totalArr)
-
-    let rowAvgArr = this.rowAvgArr(arr, totalArr)
-    console.log(rowAvgArr)
-
-    let rowAvgArrs = this.rowAvgArrs(goodArr)
-    console.log(rowAvgArrs)
-
-    for (var k = 0; k < rowAvgArrs.length; k++) {
+    
+    let totalArr
+    let rowAvgArr
+    let goodArr
+    let rowAvgArrs
+    if(avg == true){
+      totalArr = this.totalArr(arr)
+      rowAvgArr = this.rowAvgArr(arr, totalArr)
       this.lineChart.data.datasets.push({
-        label: k,
+        label: "Gemiddelde",
         fill: false,
-        backgroundColor: this.colors[k],
+        backgroundColor: this.colors[0],
         lineTension: 0.1,
-        data: rowAvgArrs[k],
-        borderColor: this.colors[k],
+        data: rowAvgArr,
+        borderColor: this.colors[0],
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
-        pointBorderColor: this.colors[k],
+        pointBorderColor: this.colors[0],
         pointBackgroundColor: "#fff",
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: this.colors[k],
-        pointHoverBorderColor: this.colors[k],
+        pointHoverBackgroundColor: this.colors[0],
+        pointHoverBorderColor: this.colors[0],
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
@@ -79,19 +84,42 @@ export class ScanGraphModalPage {
       });
       this.lineChart.update();
     }
+    else if(avg == false){
+      goodArr = this.removeKeys(arr)
+      rowAvgArrs = this.rowAvgArrs(goodArr)
+      for (var l = 0; l < rowAvgArrs.length; l++) {
+        this.lineChart.data.datasets.push({
+          label: "Scan " + (l+1),
+          fill: false,
+          backgroundColor: this.colors[l],
+          lineTension: 0.1,
+          data: rowAvgArrs[l],
+          borderColor: this.colors[l],
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: this.colors[l],
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: this.colors[l],
+          pointHoverBorderColor: this.colors[l],
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          spanGaps: false,
+        });
+        this.lineChart.update();
+      }
+    }
   }
 
-
   rowAvgArrs(arr){
-    // console.log(arr)
     let rowAvgArrs = []
     var x:number; 
     for(x=0; x<arr.length; x++){
       let temp = []
-      // temp.push(arr[x])
-      // temp = arr[x]
-      // console.log(temp)
-
       var y:number;
       for(y=0; y<6; y++){
         var z:number;
@@ -104,14 +132,11 @@ export class ScanGraphModalPage {
         }
         temp[y] = temp[y]/4
       }
-      // console.log(temp)
       rowAvgArrs.push(temp)
     }
-    // console.log(rowAvgArrs)
     return rowAvgArrs
   }
 
-  //Maakt gemiddelde van alle geselecteerde scans
   rowAvgArr(arr, totalArr){
     let rowAvgArr = []
     var v:number; 
@@ -133,7 +158,6 @@ export class ScanGraphModalPage {
     let totalArr = []
     var t:number; 
     for(t=0; t<arr.length; t++){
-      // console.log(arr[t])
       var u:number;
       for(u=0; u<arr[t].length; u++){
         if(u !== 0){

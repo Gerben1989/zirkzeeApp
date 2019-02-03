@@ -8,17 +8,17 @@
 
 
 <ion-content padding>
+  <form [formGroup]="authForm" (ngSubmit)="register(user)">
+    <ion-item>
+      <ion-label floating>Email Addres</ion-label>
+      <ion-input formControlName="email" type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Email Addres</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-
-  <button ion-button (click)="register(user)">Register</button>
-
+    <button ion-button block clear [disabled]="!authForm.valid">Register</button>
+  </form>
 </ion-content>

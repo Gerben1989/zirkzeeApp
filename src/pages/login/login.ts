@@ -27,6 +27,7 @@ export class LoginPage {
     }
     catch(e) {
       console.error(e);
+      this.navCtrl.setRoot("LoginPage");
     }
   }
 

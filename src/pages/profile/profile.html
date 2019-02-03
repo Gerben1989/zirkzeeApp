@@ -45,30 +45,54 @@
       </ion-item> -->
     </ion-card>
   </ion-row>
-  <br/>
-  <ion-row>
 
-    <ng-container *ngIf="(sensorGroups$ | async)?.length==0">
+  <br/>
+
+  <ion-row>
+    <ion-col col-12>
+      <ng-container *ngIf="(sensorGroups$ | async)?.length==0">
         <h1>
           Dit profiel heeft nog geen scans gemaakt!
         </h1>
         <button ion-button block clear (click)="navigateToScanSetupPage()">Scan Setup</button>
       </ng-container>
-    <h2 *ngIf="(sensorGroups$ | async)?.length!=0">Aantal bekende scans: {{sensorGroupAmount}}</h2>
-     <ion-col>
-        <ion-list>
-            <button ion-item *ngFor="let scan of sensorArray; let i = index" (click)="onClickSensor(i)"> {{scan.key}}</button>
-          </ion-list>
-     </ion-col>
+    </ion-col>
+    <ion-col col-12>
+      <ng-container *ngIf="(sensorGroups$ | async)?.length!=0">
+        <h2>Scan Individueel Inzien</h2>
+        <ion-col>
+          <ion-list>
+              <button ion-item *ngFor="let scan of sensorArray; let i = index" (click)="onClickSensor(i)"> {{scan.key}}</button>
+            </ion-list>
+        </ion-col>
+      </ng-container>
+    </ion-col>
+    <ion-col col-12>
+      <ng-container *ngIf="(sensorGroups$ | async)?.length!=0">
+        <h2>Lijngrafiek Maken Van Scan(s)</h2>
+        <ion-item *ngFor="let scan of sensorArray">
+          <ion-label>{{scan.key}}</ion-label>
+          <ion-checkbox (click)="selectMember(scan)"></ion-checkbox>
+        </ion-item>
+        <button ion-button block  (click)="genereerGrafiek()">Multi-Line Grafiek</button>
+        <button ion-button block  (click)="genereerAvgGrafiek()">Avg-Line Grafiek</button>
+      </ng-container>
+    </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="(sensorGroups$ | async)?.length!=0">
-      <ion-item *ngFor="let scan of sensorArray">
-        <ion-label>{{scan.key}}</ion-label>
-        <ion-checkbox (click)="selectMember(scan)"></ion-checkbox>
-      </ion-item>
-      <button ion-button block  (click)="genereerGrafiek()">Genereer Grafiek</button>
-  </ion-row>
+  <br/>
+
+  <!-- <ion-row>
+    <ng-container *ngIf="(sensorGroups$ | async)?.length!=0">
+        <ion-item *ngFor="let scan of sensorArray">
+          <ion-label>{{scan.key}}</ion-label>
+          <ion-checkbox (click)="selectMember(scan)"></ion-checkbox>
+        </ion-item>
+        <button ion-button block  (click)="genereerGrafiek()">Multi-Line Grafiek</button>
+        <button ion-button block  (click)="genereerAvgGrafiek()">Avg-Line Grafiek</button>
+    </ng-container>
+  </ion-row> -->
+
 
 </ion-content>
 
