@@ -53,13 +53,17 @@ export class ScanGraphModalPage {
       arr.push(temp);
     }
     
-    let totalArr
+    let rowValueArrs
     let rowAvgArr
     let goodArr
     let rowAvgArrs
     if(avg == true){
-      totalArr = this.totalArr(arr)
-      rowAvgArr = this.rowAvgArr(arr, totalArr)
+      goodArr = this.removeKeys(arr)
+      console.log(goodArr)
+      rowValueArrs = this.rowValueArrs(goodArr)
+      console.log(rowValueArrs)
+      rowAvgArr = this.rowAvgArr(rowValueArrs)
+      console.log(rowAvgArr)
       this.lineChart.data.datasets.push({
         label: "Gemiddelde",
         fill: false,
@@ -86,7 +90,9 @@ export class ScanGraphModalPage {
     }
     else if(avg == false){
       goodArr = this.removeKeys(arr)
+      console.log(goodArr)
       rowAvgArrs = this.rowAvgArrs(goodArr)
+      console.log(rowAvgArrs)
       for (var l = 0; l < rowAvgArrs.length; l++) {
         this.lineChart.data.datasets.push({
           label: "Scan " + (l+1),
@@ -115,40 +121,34 @@ export class ScanGraphModalPage {
     }
   }
 
-  //multiline
-  rowAvgArrs(arr){
+  //Multiline Generator ()
+  rowAvgArrs(goodArr){
     let rowAvgArrs = []
     var x:number; 
-    //voor elke array / scan
-    for(x=0; x<arr.length; x++){
+    for(x=0; x<goodArr.length; x++){
       let temp = []
       var y:number;
-      //voor elke row in de scan
       for(y=0; y<6; y++){
         var counter = 0;
         var z:number;
-        //voor elke sensor in de row
         for(z=0; z<4; z++){
-          //als sensor 1 van de row
           if( z == 0){
-            //als de value niet 0 is
-            if(arr[x][z+(4*y)] !== 0){
+            if(goodArr[x][z+(4*y)] > 292){
               counter++
+              temp[y] = goodArr[x][z+(4*y)]
+            }else{
+              temp[y] = 0
             }
-            //tel op tot de rowvalue
-            temp[y] = arr[x][z+(4*y)]
           }
-          //als sensor 2 3 4 van de row
           else{
-            //als de value van deze sensor niet 0 is
-            if(arr[x][z+(4*y)] !== 0){
+            if(goodArr[x][z+(4*y)] > 292){
               counter++
+              temp[y] += goodArr[x][z+(4*y)]
+            }else{
+              temp[y] += 0
             }
-            //tel op tot de rowvalue
-            temp[y] += arr[x][z+(4*y)]
           }
         }
-        //rowvalue / hoeveel values niet 0 waren
         temp[y] = temp[y]/counter
       }
       rowAvgArrs.push(temp)
@@ -156,43 +156,63 @@ export class ScanGraphModalPage {
     return rowAvgArrs
   }
 
-  //Average line grafiek (eerst totalArr aanpassen)
-  rowAvgArr(arr, totalArr){
+  //Average line grafiek (rowvalues optellen / aantal scans)
+  rowAvgArr(rowValueArrs){
     let rowAvgArr = []
-    var v:number; 
-    for(v=0; v<6; v++){
-      var w:number;
-      for(w=0; w<4; w++){
-        if(w == 0){
-          rowAvgArr[v] = totalArr[w+(4*v)]
-        }else{
-          rowAvgArr[v] += totalArr[w+(4*v)]
+    var u:number;
+    for(u=0; u<rowValueArrs.length; u++){
+      var v:number; 
+      for(v=0; v<6; v++){
+        if(u == 0){
+          rowAvgArr[v] = rowValueArrs[u][v]
+        }
+        else{
+          rowAvgArr[v] += rowValueArrs[u][v]
         }
       }
-      rowAvgArr[v] = (rowAvgArr[v]/arr.length)/4
+    }
+    for(v=0; v<6; v++){
+      rowAvgArr[v] = rowAvgArr[v]/rowValueArrs.length
     }
     return rowAvgArr
   }
 
-  //Check zoals ik in whatsapp zei
-  totalArr(arr){
-    let totalArr = []
-    var t:number; 
-    for(t=0; t<arr.length; t++){
-      var u:number;
-      for(u=0; u<arr[t].length; u++){
-        if(u !== 0){
-          if(t == 0){
-            totalArr[u-1] = arr[t][u]
-          }else{
-            totalArr[u-1] += arr[t][u]
+  //Calculate array of arrays with 6 average rowvalues (with low values not counting)
+  rowValueArrs(arr){
+    let rowValueArrs = []
+    var x:number; 
+    for(x=0; x<arr.length; x++){
+      let temp = []
+      var y:number;
+      for(y=0; y<6; y++){
+        var counter = 0;
+        var z:number;
+        for(z=0; z<4; z++){
+          if( z == 0){
+            if(arr[x][z+(4*y)] > 292){
+              counter++
+              temp[y] = arr[x][z+(4*y)]
+            }else{
+              temp[y] = 0
+            }
+          }
+          else{
+            if(arr[x][z+(4*y)] > 292){
+              counter++
+              temp[y] += arr[x][z+(4*y)]
+            }else{
+              temp[y] += 0
+            }
           }
         }
+        temp[y] = temp[y]/counter
       }
+      rowValueArrs.push(temp)
     }
-    return totalArr
+    return rowValueArrs
   }
 
+  //Remove Keys from all arrays
   removeKeys(arr){
     let goodArr = []
     var x:number; 
