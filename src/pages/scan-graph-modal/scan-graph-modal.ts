@@ -115,28 +115,48 @@ export class ScanGraphModalPage {
     }
   }
 
+  //multiline
   rowAvgArrs(arr){
     let rowAvgArrs = []
     var x:number; 
+    //voor elke array / scan
     for(x=0; x<arr.length; x++){
       let temp = []
       var y:number;
+      //voor elke row in de scan
       for(y=0; y<6; y++){
+        var counter = 0;
         var z:number;
+        //voor elke sensor in de row
         for(z=0; z<4; z++){
+          //als sensor 1 van de row
           if( z == 0){
+            //als de value niet 0 is
+            if(arr[x][z+(4*y)] !== 0){
+              counter++
+            }
+            //tel op tot de rowvalue
             temp[y] = arr[x][z+(4*y)]
-          }else{
+          }
+          //als sensor 2 3 4 van de row
+          else{
+            //als de value van deze sensor niet 0 is
+            if(arr[x][z+(4*y)] !== 0){
+              counter++
+            }
+            //tel op tot de rowvalue
             temp[y] += arr[x][z+(4*y)]
           }
         }
-        temp[y] = temp[y]/4
+        //rowvalue / hoeveel values niet 0 waren
+        temp[y] = temp[y]/counter
       }
       rowAvgArrs.push(temp)
     }
     return rowAvgArrs
   }
 
+  //Average line grafiek (eerst totalArr aanpassen)
   rowAvgArr(arr, totalArr){
     let rowAvgArr = []
     var v:number; 
@@ -154,6 +174,7 @@ export class ScanGraphModalPage {
     return rowAvgArr
   }
 
+  //Check zoals ik in whatsapp zei
   totalArr(arr){
     let totalArr = []
     var t:number; 
